@@ -1,0 +1,16 @@
+  - name:
+    apt:
+      update_cache: yes
+  - name:
+    command: apt list --upgradable
+    register: updates
+  - debug: var=updates.stdout_lines
+ 
+  - name: upgrade all packages, exluding apache
+    ansible.builtin.dpkg_selections:
+      name: python
+      selection: hold
+  - name: upgrade all packages on servers
+    apt:
+      upgrade: dist
+      force_apt_get: yes
