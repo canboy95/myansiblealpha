@@ -1,0 +1,10 @@
+image: webdevops/ansible:latest
+
+stages:
+  - deploy
+
+deploy_update:
+  stage: deploy
+
+script: 
+  - ansible-playbook -i inventory/hosts update.yml
